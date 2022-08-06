@@ -2,7 +2,7 @@
 pipeline {
     agent any
     environment { 
-   	SLACK_CHANNEL = '#jenkins' // 채널 
+   	SLACK_CHANNEL = '#final' // 채널 
     TEAM_DOMAIN = 'testspace' // 워크스페이스 
     TOKEN_CREDENTIAL_ID = 'slack_jenkins'// 위에서 작성한 토큰 
     }
