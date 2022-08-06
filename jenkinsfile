@@ -3,8 +3,6 @@ pipeline {
     agent any
     environment { 
    	SLACK_CHANNEL = '#final' // 채널 
-    TEAM_DOMAIN = 'testspace-2yf7968' // 워크스페이스 
-    TOKEN_CREDENTIAL_ID = credentials('slack_jenkins')// 위에서 작성한 토큰 
     }
 
     options {
@@ -42,13 +40,13 @@ pipeline {
             }
         }
     }
-  post {
-    success {
-         slackSend (channel: SLACK_CHANNEL, color: '#00FF00', message: "SUCCESSFUL: Image Build 'underwater:${env.BUILD_NUMBER}]'", teamDomain: TEAM_DOMAIN, tokenCredentialId: TOKEN_CREDENTIAL_ID )
+    post {
+        success {
+            slackSend (channel: SLACK_CHANNEL, color: '#00FF00', message: "SUCCESSFUL: Image Build 'underwater:${env.BUILD_NUMBER}]'")
          }
 
-    failure {
-         slackSend (channel: SLACK_CHANNEL, color: '#F01717', message: "FAILURE: Image Build 'underwater:${env.BUILD_NUMBER}]'", teamDomain: TEAM_DOMAIN, tokenCredentialId: TOKEN_CREDENTIAL_ID )
+        failure {
+            slackSend (channel: SLACK_CHANNEL, color: '#F01717', message: "FAILURE: Image Build 'underwater:${env.BUILD_NUMBER}]'")
          }
     }
 }
