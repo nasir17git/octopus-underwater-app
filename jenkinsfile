@@ -42,11 +42,11 @@ pipeline {
     }
     post {
         success {
-            slackSend (channel: SLACK_CHANNEL, color: '#00FF00', message: "SUCCESSFUL: Image Build 'underwater:${env.BUILD_NUMBER}]'")
+            slackSend (channel: SLACK_CHANNEL, color: '#00FF00', message: "SUCCESSFUL: Image Build 'testimage:${env.BUILD_NUMBER}]'")
             emailext (
                 to: 'nasir17@kakao.com',
-                subject: "SUCCESSFUL: Image Build 'underwater:${env.BUILD_NUMBER}]'",
-                body: 'Congratulation'
+                subject: "SUCCESSFUL: Image Build 'testimage:${env.BUILD_NUMBER}]'",
+                body: "SUCCESSFUL: Image Build 'testimage:${env.BUILD_NUMBER}]'"
             )
          }
 
@@ -54,8 +54,8 @@ pipeline {
             slackSend (channel: SLACK_CHANNEL, color: '#F01717', message: "FAILURE: Image Build 'underwater:${env.BUILD_NUMBER}]'")
             emailext (
                 to: 'nasir17@kakao.com',
-                subject: "FAILURE: Image Build 'underwater:${env.BUILD_NUMBER}]'",
-                body: 'Sorry'
+                subject: "FAILURE: Image Build 'testimage:${env.BUILD_NUMBER}]'",
+                body: "FAILURE: Image Build 'testimage:${env.BUILD_NUMBER}]'"
             )
          }
     }
