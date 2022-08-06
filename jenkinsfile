@@ -41,7 +41,7 @@ pipeline {
                 }
             }
         }
-          post {
+  post {
     success {
          slackSend (channel: SLACK_CHANNEL, color: '#00FF00', message: "SUCCESSFUL: Image Build 'underwater:${env.BUILD_NUMBER}]'", teamDomain: TEAM_DOMAIN, tokenCredentialId: TOKEN_CREDENTIAL_ID )
          }
