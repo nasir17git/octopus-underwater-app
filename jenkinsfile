@@ -43,21 +43,13 @@ pipeline {
     }
     post {
         success {
-            slackSend (channel: SLACK_CHANNEL, color: '#00FF00', message: "SUCCESSFUL: Image Build '${env.JOB_NAME}:${env.BUILD_NUMBER}]'")
-            emailext (
-                to: 'nasir17@kakao.com',
-                subject: "SUCCESSFUL: ${env.JOB_NAME}",
-                body: "SUCCESSFUL: Image Build '${env.JOB_NAME}:${env.BUILD_NUMBER}]'"
-            )
+            slackSend (channel: SLACK_CHANNEL, color: '#00FF00', message: "SUCCESSFUL: Image Build '${env.JOB_NAME}:${env.BUILD_NUMBER}'")
+            emailext attachLog: true, body: '"SUCCESSFUL: Image Build \'${env.JOB_NAME}:${env.BUILD_NUMBER}\'"', subject: '"SUCCESSFUL: ${env.JOB_NAME}"', to: 'nasir17@kakao.com'
          }
 
         failure {
-            slackSend (channel: SLACK_CHANNEL, color: '#F01717', message: "FAILURE: Image Build '${env.JOB_NAME}:${env.BUILD_NUMBER}]'")
-            emailext (
-                to: 'nasir17@kakao.com',
-                subject: "FAILURE: ${env.JOB_NAME}",
-                body: "FAILURE: Image Build '${env.JOB_NAME}:${env.BUILD_NUMBER}'"
-            )
+            slackSend (channel: SLACK_CHANNEL, color: '#F01717', message: "FAILURE: Image Build '${env.JOB_NAME}:${env.BUILD_NUMBER}'")
+            emailext attachLog: true, body: '"FAILURE: Image Build \'${env.JOB_NAME}:${env.BUILD_NUMBER}\'"', subject: '"SUCCESSFUL: ${env.JOB_NAME}"', to: 'nasir17@kakao.com'
          }
     }
 }
