@@ -44,21 +44,21 @@ pipeline {
     post {
         success {
             slackSend (channel: SLACK_CHANNEL, color: '#00FF00', message: "SUCCESSFUL: Image Build '${env.JOB_NAME}:${env.BUILD_NUMBER}]'")
-            emailext (
+            emailext attachLog: true (
                 to: 'nasir17@kakao.com',
                 subject: "SUCCESSFUL: ${env.JOB_NAME}",
                 body: "SUCCESSFUL: Image Build '${env.JOB_NAME}:${env.BUILD_NUMBER}'"
-                attachLog: true
+                
             )
          }
 
         failure {
             slackSend (channel: SLACK_CHANNEL, color: '#F01717', message: "FAILURE: Image Build '${env.JOB_NAME}:${env.BUILD_NUMBER}]'")
-            emailext (
+            emailext attachLog: true (
                 to: 'nasir17@kakao.com',
                 subject: "FAILURE: ${env.JOB_NAME}",
                 body: "FAILURE: Image Build '${env.JOB_NAME}:${env.BUILD_NUMBER}'"
-                attachLog: true
+                
             )
          }
     }
