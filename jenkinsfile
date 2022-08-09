@@ -2,7 +2,7 @@
 pipeline {
     agent any
     environment { 
-   	SLACK_CHANNEL = '#final' // 채널 
+   	SLACK_CHANNEL = '#jenkins_alert' // 채널 
     }
 
     options {
